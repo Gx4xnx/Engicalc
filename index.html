@@ -10,51 +10,143 @@
 
     <header>
         <h1>📐 EngiCalc</h1>
-        <p>The Open-Source, Step-by-Step Formula Solver for Engineers</p>
+        <p>The Open-Source, Step-by-Step Formula Hub for First-Year Engineers</p>
     </header>
 
     <main class="container">
         <aside class="sidebar">
-            <h3>Select a Formula</h3>
-            <button class="formula-btn active" onclick="switchFormula(event, 'ohms-law')">Ohm's Law (Physics)</button>
-            <button class="formula-btn" onclick="switchFormula(event, 'quadratic')">Quadratic Equation (Math)</button>
+            <h3>🧮 Mathematics</h3>
+            <button class="formula-btn active" onclick="switchFormula(event, 'quadratic')">Quadratic Equation</button>
+            <button class="formula-btn" onclick="switchFormula(event, 'distance')">2D Distance Formula</button>
+            <button class="formula-btn" onclick="switchFormula(event, 'slope')">Slope of a Line</button>
+            
+            <h3>⚡ Physics & Electrical</h3>
+            <button class="formula-btn" onclick="switchFormula(event, 'ohms-law')">Ohm's Law</button>
+            <button class="formula-btn" onclick="switchFormula(event, 'capacitance')">Capacitance (Q = CV)</button>
+            <button class="formula-btn" onclick="switchFormula(event, 'kinetic')">Kinetic Energy</button>
+            <button class="formula-btn" onclick="switchFormula(event, 'wave')">Wave Velocity</button>
+
+            <h3>⚙️ Engineering Mechanics</h3>
+            <button class="formula-btn" onclick="switchFormula(event, 'force')">Newton's Second Law (F=ma)</button>
+            <button class="formula-btn" onclick="switchFormula(event, 'torque')">Basic Torque</button>
+            <button class="formula-btn" onclick="switchFormula(event, 'work')">Work Done</button>
+            <button class="formula-btn" onclick="switchFormula(event, 'pressure')">Pressure Calculator</button>
+            <button class="formula-btn" onclick="switchFormula(event, 'density')">Mass Density</button>
             
             <div class="contrib-box">
-                <p><strong>Want to add a formula?</strong> Clone this project on GitHub and submit a Pull Request!</p>
+                <h4>🎯 Help Us Reach 100 Formulas!</h4>
+                <p>Upcoming modules needing contributors:</p>
+                <ul style="padding-left: 1.2rem; margin: 0.5rem 0; font-size: 0.8rem;">
+                    <li>Ideal Gas Law (PV=nRT)</li>
+                    <li>Centripetal Force</li>
+                    <li>Bernoulli's Equation</li>
+                    <li>Hooke's Law (F=-kx)</li>
+                </ul>
+                <p style="margin-bottom: 0;">Fork on GitHub & submit a Pull Request!</p>
             </div>
         </aside>
 
         <section class="calculator-card">
-            <div id="ohms-law" class="formula-section">
+            
+            <div id="quadratic" class="formula-section">
+                <h2>Quadratic Equation Solver</h2>
+                <p class="formula-display">Formula: ax² + bx + c = 0</p>
+                <div class="input-group"><label>Value of a:</label><input type="number" id="quad-a" placeholder="e.g., 1" step="any"></div>
+                <div class="input-group"><label>Value of b:</label><input type="number" id="quad-b" placeholder="e.g., -5" step="any"></div>
+                <div class="input-group"><label>Value of c:</label><input type="number" id="quad-c" placeholder="e.g., 6" step="any"></div>
+                <button class="calc-btn" onclick="solveQuadratic()">Calculate Steps</button>
+            </div>
+
+            <div id="distance" class="formula-section hidden">
+                <h2>2D Distance Formula</h2>
+                <p class="formula-display">Formula: d = √((x₂ - x₁)² + (y₂ - y₁)²)</p>
+                <div class="input-group"><label>x₁ Coordinate:</label><input type="number" id="dist-x1" placeholder="0" step="any"></div>
+                <div class="input-group"><label>y₁ Coordinate:</label><input type="number" id="dist-y1" placeholder="0" step="any"></div>
+                <div class="input-group"><label>x₂ Coordinate:</label><input type="number" id="dist-x2" placeholder="3" step="any"></div>
+                <div class="input-group"><label>y₂ Coordinate:</label><input type="number" id="dist-y2" placeholder="4" step="any"></div>
+                <button class="calc-btn" onclick="solveDistance()">Calculate Steps</button>
+            </div>
+
+            <div id="slope" class="formula-section hidden">
+                <h2>Slope of a Line Solver</h2>
+                <p class="formula-display">Formula: m = (y₂ - y₁) / (x₂ - x₁)</p>
+                <div class="input-group"><label>x₁ Value:</label><input type="number" id="slope-x1" placeholder="1" step="any"></div>
+                <div class="input-group"><label>y₁ Value:</label><input type="number" id="slope-y1" placeholder="2" step="any"></div>
+                <div class="input-group"><label>x₂ Value:</label><input type="number" id="slope-x2" placeholder="3" step="any"></div>
+                <div class="input-group"><label>y₂ Value:</label><input type="number" id="slope-y2" placeholder="6" step="any"></div>
+                <button class="calc-btn" onclick="solveSlope()">Calculate Steps</button>
+            </div>
+
+            <div id="ohms-law" class="formula-section hidden">
                 <h2>Ohm's Law Solver</h2>
-                <p class="formula-display">Formula: <span>V = I × R</span></p>
-                <div class="input-group">
-                    <label>Current (I) in Amperes:</label>
-                    <input type="number" id="ohms-i" placeholder="e.g., 2" step="any">
-                </div>
-                <div class="input-group">
-                    <label>Resistance (R) in Ohms:</label>
-                    <input type="number" id="ohms-r" placeholder="e.g., 10" step="any">
-                </div>
+                <p class="formula-display">Formula: V = I × R</p>
+                <div class="input-group"><label>Current (I) in Amperes:</label><input type="number" id="ohms-i" placeholder="e.g., 2" step="any"></div>
+                <div class="input-group"><label>Resistance (R) in Ohms:</label><input type="number" id="ohms-r" placeholder="e.g., 10" step="any"></div>
                 <button class="calc-btn" onclick="solveOhmsLaw()">Calculate Steps</button>
             </div>
 
-            <div id="quadratic" class="formula-section hidden">
-                <h2>Quadratic Equation Solver</h2>
-                <p class="formula-display">Formula: <span>ax² + bx + c = 0</span></p>
-                <div class="input-group">
-                    <label>Value of a:</label>
-                    <input type="number" id="quad-a" placeholder="e.g., 1" step="any">
-                </div>
-                <div class="input-group">
-                    <label>Value of b:</label>
-                    <input type="number" id="quad-b" placeholder="e.g., -5" step="any">
-                </div>
-                <div class="input-group">
-                    <label>Value of c:</label>
-                    <input type="number" id="quad-c" placeholder="e.g., 6" step="any">
-                </div>
-                <button class="calc-btn" onclick="solveQuadratic()">Calculate Steps</button>
+            <div id="capacitance" class="formula-section hidden">
+                <h2>Capacitance Solver (Charge Calculation)</h2>
+                <p class="formula-display">Formula: Q = C × V</p>
+                <div class="input-group"><label>Capacitance (C) in Farads:</label><input type="number" id="cap-c" placeholder="e.g., 0.005" step="any"></div>
+                <div class="input-group"><label>Voltage (V) in Volts:</label><input type="number" id="cap-v" placeholder="e.g., 12" step="any"></div>
+                <button class="calc-btn" onclick="solveCapacitance()">Calculate Steps</button>
+            </div>
+
+            <div id="kinetic" class="formula-section hidden">
+                <h2>Kinetic Energy Solver</h2>
+                <p class="formula-display">Formula: KE = 0.5 × m × v²</p>
+                <div class="input-group"><label>Mass (m) in kg:</label><input type="number" id="ke-m" placeholder="e.g., 60" step="any"></div>
+                <div class="input-group"><label>Velocity (v) in m/s:</label><input type="number" id="ke-v" placeholder="e.g., 10" step="any"></div>
+                <button class="calc-btn" onclick="solveKineticEnergy()">Calculate Steps</button>
+            </div>
+
+            <div id="wave" class="formula-section hidden">
+                <h2>Wave Velocity Solver</h2>
+                <p class="formula-display">Formula: v = f × λ</p>
+                <div class="input-group"><label>Frequency (f) in Hz:</label><input type="number" id="wave-f" placeholder="e.g., 50" step="any"></div>
+                <div class="input-group"><label>Wavelength (λ) in meters:</label><input type="number" id="wave-l" placeholder="e.g., 2" step="any"></div>
+                <button class="calc-btn" onclick="solveWaveVelocity()">Calculate Steps</button>
+            </div>
+
+            <div id="force" class="formula-section hidden">
+                <h2>Force Calculator (Newton's 2nd Law)</h2>
+                <p class="formula-display">Formula: F = m × a</p>
+                <div class="input-group"><label>Mass (m) in kg:</label><input type="number" id="force-m" placeholder="e.g., 10" step="any"></div>
+                <div class="input-group"><label>Acceleration (a) in m/s²:</label><input type="number" id="force-a" placeholder="e.g., 9.81" step="any"></div>
+                <button class="calc-btn" onclick="solveForce()">Calculate Steps</button>
+            </div>
+
+            <div id="torque" class="formula-section hidden">
+                <h2>Perpendicular Torque Solver</h2>
+                <p class="formula-display">Formula: τ = F × r</p>
+                <div class="input-group"><label>Force (F) in Newtons:</label><input type="number" id="torque-f" placeholder="e.g., 15" step="any"></div>
+                <div class="input-group"><label>Radius/Distance (r) in meters:</label><input type="number" id="torque-r" placeholder="e.g., 2" step="any"></div>
+                <button class="calc-btn" onclick="solveTorque()">Calculate Steps</button>
+            </div>
+
+            <div id="work" class="formula-section hidden">
+                <h2>Work Done Solver</h2>
+                <p class="formula-display">Formula: W = F × d</p>
+                <div class="input-group"><label>Force (F) in Newtons:</label><input type="number" id="work-f" placeholder="e.g., 50" step="any"></div>
+                <div class="input-group"><label>Displacement (d) in meters:</label><input type="number" id="work-d" placeholder="e.g., 5" step="any"></div>
+                <button class="calc-btn" onclick="solveWork()">Calculate Steps</button>
+            </div>
+
+            <div id="pressure" class="formula-section hidden">
+                <h2>Pressure Solver</h2>
+                <p class="formula-display">Formula: P = F / A</p>
+                <div class="input-group"><label>Force (F) in Newtons:</label><input type="number" id="press-f" placeholder="e.g., 500" step="any"></div>
+                <div class="input-group"><label>Area (A) in m²:</label><input type="number" id="press-a" placeholder="e.g., 2" step="any"></div>
+                <button class="calc-btn" onclick="solvePressure()">Calculate Steps</button>
+            </div>
+
+            <div id="density" class="formula-section hidden">
+                <h2>Mass Density Solver</h2>
+                <p class="formula-display">Formula: ρ = m / V</p>
+                <div class="input-group"><label>Mass (m) in kg:</label><input type="number" id="dens-m" placeholder="e.g., 100" step="any"></div>
+                <div class="input-group"><label>Volume (V) in m³:</label><input type="number" id="dens-v" placeholder="e.g., 5" step="any"></div>
+                <button class="calc-btn" onclick="solveDensity()">Calculate Steps</button>
             </div>
 
             <div id="output-box" class="output-box hidden">
