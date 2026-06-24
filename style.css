@@ -1,144 +1,69 @@
-:root {
-    --bg-color: #f4f7f6;
-    --card-bg: #ffffff;
-    --text-main: #2c3e50;
-    --primary: #3498db;
-    --primary-hover: #2980b9;
-    --success: #2ecc71;
-    --border: #e2e8f0;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngiCalc - Step-by-Step Engineering Solver</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-main);
-    margin: 0;
-    padding: 0;
-}
+    <header>
+        <h1>📐 EngiCalc</h1>
+        <p>The Open-Source, Step-by-Step Formula Solver for Engineers</p>
+    </header>
 
-header {
-    text-align: center;
-    padding: 2rem 1rem;
-    background: linear-gradient(135deg, #2c3e50, #3498db);
-    color: white;
-}
+    <main class="container">
+        <aside class="sidebar">
+            <h3>Select a Formula</h3>
+            <button class="formula-btn active" onclick="switchFormula(event, 'ohms-law')">Ohm's Law (Physics)</button>
+            <button class="formula-btn" onclick="switchFormula(event, 'quadratic')">Quadratic Equation (Math)</button>
+            
+            <div class="contrib-box">
+                <p><strong>Want to add a formula?</strong> Clone this project on GitHub and submit a Pull Request!</p>
+            </div>
+        </aside>
 
-header h1 { margin: 0; font-size: 2.5rem; }
-header p { margin: 0.5rem 0 0 0; opacity: 0.9; }
+        <section class="calculator-card">
+            <div id="ohms-law" class="formula-section">
+                <h2>Ohm's Law Solver</h2>
+                <p class="formula-display">Formula: <span>V = I × R</span></p>
+                <div class="input-group">
+                    <label>Current (I) in Amperes:</label>
+                    <input type="number" id="ohms-i" placeholder="e.g., 2" step="any">
+                </div>
+                <div class="input-group">
+                    <label>Resistance (R) in Ohms:</label>
+                    <input type="number" id="ohms-r" placeholder="e.g., 10" step="any">
+                </div>
+                <button class="calc-btn" onclick="solveOhmsLaw()">Calculate Steps</button>
+            </div>
 
-.container {
-    max-width: 1100px;
-    margin: 2rem auto;
-    display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: 2rem;
-    padding: 0 1rem;
-}
+            <div id="quadratic" class="formula-section hidden">
+                <h2>Quadratic Equation Solver</h2>
+                <p class="formula-display">Formula: <span>ax² + bx + c = 0</span></p>
+                <div class="input-group">
+                    <label>Value of a:</label>
+                    <input type="number" id="quad-a" placeholder="e.g., 1" step="any">
+                </div>
+                <div class="input-group">
+                    <label>Value of b:</label>
+                    <input type="number" id="quad-b" placeholder="e.g., -5" step="any">
+                </div>
+                <div class="input-group">
+                    <label>Value of c:</label>
+                    <input type="number" id="quad-c" placeholder="e.g., 6" step="any">
+                </div>
+                <button class="calc-btn" onclick="solveQuadratic()">Calculate Steps</button>
+            </div>
 
-.sidebar {
-    background: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    height: fit-content;
-}
+            <div id="output-box" class="output-box hidden">
+                <h3>🔢 Solution Steps:</h3>
+                <div id="steps-content"></div>
+            </div>
+        </section>
+    </main>
 
-.formula-btn {
-    display: block;
-    width: 100%;
-    padding: 0.8rem 1rem;
-    margin-bottom: 0.5rem;
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    text-align: left;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.formula-btn.active, .formula-btn:hover {
-    background: var(--primary);
-    color: white;
-    border-color: var(--primary);
-}
-
-.contrib-box {
-    margin-top: 2rem;
-    padding: 1rem;
-    background: #e8f4fd;
-    border-left: 4px solid var(--primary);
-    border-radius: 4px;
-    font-size: 0.9rem;
-}
-
-.calculator-card {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-}
-
-.formula-display {
-    background: #f8fafc;
-    padding: 1rem;
-    border-radius: 6px;
-    font-family: monospace;
-    font-size: 1.2rem;
-    border-left: 4px solid var(--text-main);
-}
-
-.input-group {
-    margin-bottom: 1.2rem;
-}
-
-.input-group label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-}
-
-.input-group input {
-    width: 100%;
-    padding: 0.75rem;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    font-size: 1rem;
-    box-sizing: border-box;
-}
-
-.calc-btn {
-    background: var(--success);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 100%;
-}
-
-.calc-btn:hover { background: #27ae60; }
-
-.output-box {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background: #2c3e50;
-    color: #ecf0f1;
-    border-radius: 6px;
-}
-
-.step {
-    margin-bottom: 1rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #34495e;
-    line-height: 1.6;
-}
-.step:last-child { border: none; margin: 0; padding: 0; }
-
-.hidden { display: none; }
-
-@media (max-width: 768px) {
-    .container { grid-template-columns: 1fr; }
-}
+    <script src="script.js"></script>
+</body>
+</html>
