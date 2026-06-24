@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EngiCalc - Step-by-Step Engineering Solver</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>📐 EngiCalc</h1>
+        <p>The Open-Source, Step-by-Step Formula Solver for Engineers</p>
+    </header>
+
+    <main class="container">
+        <aside class="sidebar">
+            <h3>Select a Formula</h3>
+            <button class="formula-btn active" onclick="switchFormula('ohms-law')">Ohm's Law (Physics)</button>
+            <button class="formula-btn" onclick="switchFormula('quadratic')">Quadratic Equation (Math)</button>
+            
+            <div class="contrib-box">
+                <p><strong>Want to add a formula?</strong> Clone this project on GitHub and add your script!</p>
+            </div>
+        </aside>
+
+        <section class="calculator-card">
+            <div id="ohms-law" class="formula-section">
+                <h2>Ohm's Law Solver</h2>
+                <p class="formula-display">Formula: <span>V = I × R</span></p>
+                <div class="input-group">
+                    <label>Current (I) in Amperes:</label>
+                    <input type="number" id="ohms-i" placeholder="e.g., 2">
+                </div>
+                <div class="input-group">
+                    <label>Resistance (R) in Ohms:</label>
+                    <input type="number" id="ohms-r" placeholder="e.g., 10">
+                </div>
+                <button class="calc-btn" onclick="solveOhmsLaw()">Calculate Steps</button>
+            </div>
+
+            <div id="quadratic" class="formula-section hidden">
+                <h2>Quadratic Equation Solver</h2>
+                <p class="formula-display">Formula: <span>ax² + bx + c = 0</span></p>
+                <div class="input-group">
+                    <label>Value of a:</label>
+                    <input type="number" id="quad-a" placeholder="e.g., 1">
+                </div>
+                <div class="input-group">
+                    <label>Value of b:</label>
+                    <input type="number" id="quad-b" placeholder="e.g., -5">
+                </div>
+                <div class="input-group">
+                    <label>Value of c:</label>
+                    <input type="number" id="quad-c" placeholder="e.g., 6">
+                </div>
+                <button class="calc-btn" onclick="solveQuadratic()">Calculate Steps</button>
+            </div>
+
+            <div id="output-box" class="output-box hidden">
+                <h3>🔢 Solution Steps:</h3>
+                <div id="steps-content"></div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
